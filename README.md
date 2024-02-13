@@ -5,3 +5,11 @@ Uygulamayı denemek isterseniz [bağlantı](https://expo.dev//accounts/keremcank
 `npm i` komutu ile gerekli kütüphaneleri yüklemelisiniz
 ## Çalıştırma
 `npm start` komutu ile çalıştırarak expo uygulamasından görüntüleyebilirsiniz.
+
+## Giriş bilgileri
+### Admin Girişi
+`Email:` `admin@library.com`
+`Şifre:` `123456` 
+### Kullanıcı Girişi
+`Email:` `user@library.com` 
+`Şifre:` `123456` 
