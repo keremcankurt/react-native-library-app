@@ -17,7 +17,6 @@ Uygulamayı denemek isterseniz [bağlantı](https://expo.dev//accounts/keremcank
 `Şifre:` `123456` 
 
 # Uygulamadan Görüntüler
-# react-native-ecommerce-app
 <div style="display: flex; flex-direction: row; align-items: center;">
   <img src="assets/1.jpg" alt="gorsel1" width="300" height="600" style="margin-right: 10px;">
   <img src="assets/2.jpg" alt="gorsel2" width="300" height="600" style="margin-right: 10px;">
