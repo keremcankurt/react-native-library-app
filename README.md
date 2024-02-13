@@ -8,7 +8,7 @@ Uygulamayı denemek isterseniz [bağlantı](https://expo.dev//accounts/keremcank
 
 ## Giriş bilgileri
 ### Admin Girişi
-`Email:` `admin@library.com`
+`Email:` `admin@library.com`\n
 `Şifre:` `123456` 
 ### Kullanıcı Girişi
 `Email:` `user@library.com` 
