@@ -1,9 +1,9 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import bookService from "./bookService";
 import { Toast } from "react-native-toast-message/lib/src/Toast";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 
 
+//Kitap bilgilerini tutuyoruz ve diğer alanlarda da kullandığımız için export etmemiz gerekiyor
 export interface Book {
 
   name: string;

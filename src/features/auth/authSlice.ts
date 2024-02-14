@@ -2,13 +2,14 @@ import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import authService from "./authService";
 import { Toast } from "react-native-toast-message/lib/src/Toast";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-
+//Tutulan kulanıcı bilgileri için bir interface
 interface User {
   _id: string;
   email: string;
   role: string;
 }
 
+//Kullanıcı bilgilerini storage'dan çekmek için gerekli olan fonksiyon
 const loadUserFromStorage = createAsyncThunk<User | null>('auth/loadUserFromStorage', async () => {
   const user = await AsyncStorage.getItem('user');
   return user ? JSON.parse(user) : null;
@@ -39,11 +40,11 @@ export const login = createAsyncThunk<User, { email: string; password: string }>
       if (!response.ok) {
         throw new Error(result.message);
       }
+      //başarılı olduğunda gelen kullanıcı bilgilerini storage'a kaydediyoruz
       await AsyncStorage.setItem('user', JSON.stringify(result));
       return result;
     } catch (error) {
       const err = error as Error;
-      console.log(err)
       Toast.show({
         type: 'error',
         text1: 'Something went wrong',
