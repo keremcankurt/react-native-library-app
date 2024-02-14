@@ -3,8 +3,8 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack"
 import { Book } from "features/book/bookSlice"
 
 
+
 export type AuthStackParamList = {
-    Welcome: undefined
     Login: undefined
     Register: undefined
 }

@@ -1,12 +1,11 @@
 import { useNavigation } from '@react-navigation/native';
-import { useAppDispatch } from 'app/hooks';
+import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { RootState } from 'app/store';
 import { logoutUser } from 'features/auth/authSlice';
 import { Book } from 'features/book/bookSlice';
 import { HomeScreenNavigationType } from 'navigation/types';
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View, TextInput, Button, Image, Dimensions, TouchableOpacity, ScrollView, ActivityIndicator } from 'react-native';
-import { useSelector } from 'react-redux';
 import { Picker } from '@react-native-picker/picker';
 
 interface Filters {
@@ -18,7 +17,7 @@ interface Filters {
 const Home = () => {
   const [sorting, setSorting] = useState<string>('name');
   const [sortedBooks, setSortedBooks] = useState<Book[]>([]);
-  const { isLoading, books } = useSelector((state: RootState) => state.book);
+  const { isLoading, books } = useAppSelector((state: RootState) => state.book);
   const dispatch = useAppDispatch()
   const [filters, setFilters] = useState<Filters>({
     ISBN: '',
@@ -27,9 +26,12 @@ const Home = () => {
   });
   const [filteredBooks, setFilteredBooks] = useState<Book[]>(books);
 
+
+  //Kitaplar değiştiği zaman tekrardan filtreleme işlemi yapılıyor (örnek olarak güncelleme işlemi veya kitap silme işleminde)
   useEffect(() => {
     handleFilterSubmit()
   },[books])
+  //Kitap filtreleme işlemi yapıldığında tekrardan kitapları sıralamak gerekiyor
   useEffect(() => {
     handleSortChange(sorting)
   },[filteredBooks])
@@ -45,6 +47,7 @@ const Home = () => {
       return; 
     }
   
+    //Kitap filtreleme işlemi
     const filtered = books.filter(book => {
       if (filters.ISBN && !book.ISBN.includes(filters.ISBN)) {
         return false;
@@ -52,6 +55,7 @@ const Home = () => {
       if (filters.name && !book.name.toLowerCase().includes(filters.name.toLowerCase())) {
         return false;
       }
+      //filtreleme de belirtilen yazar ismi ile kitapların herhangi bi yazarı eşleşiyorsa getiriyoruz
       if (filters.author && !book.authors.some((a: String) => a.toLowerCase().includes(filters.author.toLowerCase()))) {
         return false;
       }

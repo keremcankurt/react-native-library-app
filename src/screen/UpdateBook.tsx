@@ -1,21 +1,22 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React, { useEffect, useState } from 'react'
+import { StyleSheet } from 'react-native'
+import React, { useState } from 'react'
 import Toast from 'react-native-toast-message';
-import { useSelector } from 'react-redux';
 import { RootState } from 'app/store';
-import { useAppDispatch } from 'app/hooks';
-import { Book, addBook, updateBook } from 'features/book/bookSlice';
+import { useAppDispatch, useAppSelector } from 'app/hooks';
+import { Book, updateBook } from 'features/book/bookSlice';
 import BookForm from 'component/BookForm';
 import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
 import { HomeScreenNavigationType, HomeStackParamList } from 'navigation/types';
 
+//Update book alanına hangi parametrelerin geldiğini öğrenmek için kullanıyoruz
 type BookRouteType = RouteProp<HomeStackParamList, "UpdateBook">;
 const UpdateBook = () => {
   const navigation = useNavigation<HomeScreenNavigationType<"UpdateBook">>();
 
-  const { user } = useSelector((state: RootState) => state.auth);
+  const { user } = useAppSelector((state: RootState) => state.auth);
 
   const route = useRoute<BookRouteType>();
+  //Güncellenecek kitabı paramterle olarak alıyoruz
   const { book } = route.params;
   const dispatch = useAppDispatch()
   const [bookData, setBookData] = useState<Book>(book);

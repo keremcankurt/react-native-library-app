@@ -1,15 +1,15 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet } from 'react-native'
 import React, { useState } from 'react'
 import Toast from 'react-native-toast-message';
-import { useSelector } from 'react-redux';
 import { RootState } from 'app/store';
-import { useAppDispatch } from 'app/hooks';
+import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { Book, addBook } from 'features/book/bookSlice';
 import BookForm from 'component/BookForm';
 
 const AddBook = () => {
-  const { user } = useSelector((state: RootState) => state.auth);
+  const { user } = useAppSelector((state: RootState) => state.auth);
   const dispatch = useAppDispatch()
+
   const [bookData, setBookData] = useState<Book>({
     name: '',
     _id: '',
@@ -19,6 +19,7 @@ const AddBook = () => {
     description: '',
     genre: ''
   });
+  
   const handleAddBook = async () => {
     try {
       if (bookData.coverImage === "" || 

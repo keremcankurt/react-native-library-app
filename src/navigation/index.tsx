@@ -13,6 +13,8 @@ const Navigation = () => {
   useEffect(() => {
     dispatch(loadUserFromStorage());
   }, [])
+
+  //Kullanıcı eğer giriş yapmamışsa Auth navigator(giriş ve kayıt olma ekranları)-giriş yapmışsa app navigator(ana sayfa) gösterilecek
   return (
     <NavigationContainer>
       {!user ?

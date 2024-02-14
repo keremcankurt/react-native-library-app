@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Button, ImageBackground, StyleSheet, Text, TextInput, View, Animated, TouchableOpacity, ActivityIndicator } from "react-native";
-import { useSelector } from "react-redux";
+import {  ImageBackground, StyleSheet, Text, TextInput, View, Animated, TouchableOpacity, ActivityIndicator } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { register, reset } from "features/auth/authSlice";
 import { AuthScreenNavigationType } from "navigation/types";
-import { useAppDispatch } from "app/hooks";
+import { useAppDispatch, useAppSelector } from "app/hooks";
 import { RootState } from "app/store";
 import { Toast } from "react-native-toast-message/lib/src/Toast";
 
@@ -20,7 +19,7 @@ const Register = () => {
     email: "",
     password: ""
   });
-  const { isSuccess, isLoading, user } = useSelector((state: RootState) => state.auth);
+  const { isSuccess, isLoading } = useAppSelector((state: RootState) => state.auth);
   const navigation = useNavigation<AuthScreenNavigationType<"Register">>()
   const dispatch = useAppDispatch()
   const { email, password } = formData;

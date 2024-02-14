@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { ScrollView, StyleSheet, Text, View, TextInput, TouchableOpacity, Image, Dimensions, ActivityIndicator } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import { useSelector } from 'react-redux';
 import { RootState } from 'app/store';
 
+
+//Prop olarak geçilen alanların içerikleri belirleniyor
 interface BookFormProps {
     bookData: {
       name: string;
@@ -30,8 +32,10 @@ interface BookFormProps {
     const { isLoading } = useSelector((state: RootState) => state.book);
 
 
+
   const handleImageChange = async () => {
     try {
+        //Kitap kapağı için görsel alınırken öncelikle dosya erişim izni istiyoruz
       let result: ImagePicker.ImagePickerResult | null = null;
       const permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
   
@@ -46,7 +50,7 @@ interface BookFormProps {
         quality: 1, 
         base64: true
       });
-
+      //Seçilen resmi base64 türünde alıyoruz(veritabanına base64 formatında kaydettiğimiz için)
       if (result && !result.canceled && result.assets && result.assets.length > 0 && result.assets[0].base64) {
         const base64 = result.assets[0].base64;
         setBookData({ ...bookData, coverImage: base64 });

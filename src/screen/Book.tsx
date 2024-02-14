@@ -2,8 +2,7 @@ import { StyleSheet, Text, View, Image, ScrollView, TouchableOpacity, ToastAndro
 import React, { useEffect } from 'react';
 import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
 import { HomeScreenNavigationType, HomeStackParamList } from 'navigation/types';
-import { useAppDispatch } from 'app/hooks';
-import { useSelector } from 'react-redux';
+import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { RootState } from 'app/store';
 import { deleteBook } from 'features/book/bookSlice';
 import Toast from 'react-native-toast-message';
@@ -13,12 +12,13 @@ type BookRouteType = RouteProp<HomeStackParamList, "Book">;
 const Book = () => {
   const navigation = useNavigation<HomeScreenNavigationType<"Book">>();
 
-  const { user } = useSelector((state: RootState) => state.auth);
-  const { isLoading } = useSelector((state: RootState) => state.book);
+  const { user } = useAppSelector((state: RootState) => state.auth);
+  const { isLoading } = useAppSelector((state: RootState) => state.book);
   const dispatch = useAppDispatch()
 
   const route = useRoute<BookRouteType>();
   const { book } = route.params;
+  //Ekran başlığı kitap ismi yapılıyor
   useEffect(() => {
     navigation.setOptions({
       title: `${book.name}`,
