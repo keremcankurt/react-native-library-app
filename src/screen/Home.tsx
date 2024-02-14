@@ -55,7 +55,7 @@ const Home = () => {
       if (filters.name && !book.name.toLowerCase().includes(filters.name.toLowerCase())) {
         return false;
       }
-      //filtreleme de belirtilen yazar ismi ile kitapların herhangi bi yazarı eşleşiyorsa getiriyoruz
+      //filtreleme de belirtilen yazar ismi ile kitapların herhangi bi yazarı eşleşiyorsa
       if (filters.author && !book.authors.some((a: String) => a.toLowerCase().includes(filters.author.toLowerCase()))) {
         return false;
       }
